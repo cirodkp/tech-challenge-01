@@ -15,31 +15,7 @@ jobs:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
     strategy:
       matrix:
-        service:
-          - name: api
-            context: ./src/TechChallenge01.Api
-            dockerfile: Dockerfile
-            image_suffix: tech-challenge-api:latest
-          - name: apiqueue
-            context: ./src/TechChallenge01.ApiMessaging
-            dockerfile: Dockerfile
-            image_suffix: tech-challenge-apiqueue:latest
-          - name: tokenapi
-            context: ./src/TechChallenge01.TokenApi
-            dockerfile: Dockerfile
-            image_suffix: tech-challenge-tokenapi:latest
-          - name: webstatus
-            context: ./src/TechChallenge01.WebStatus
-            dockerfile: Dockerfile
-            image_suffix: tech-challenge-webstatus:latest
-          - name: apigateway
-            context: ./src/TechChallenge01.ApiGateway
-            dockerfile: Dockerfile
-            image_suffix: tech-challenge-apigateway:latest
-          - name: rabbitmq-consumer
-            context: ./src/TechChallenge01.Infra.Consumer
-            dockerfile: Dockerfile
-            image_suffix: tech-challenge-rabbitmq-consumer:latest
+        service: [TechChallenge01.Api, TechChallenge01.TokenApi, TechChallenge01.ApiGateway, TechChallenge01.Infra.Consumer,Techchallenge01.ApiMessaging]
     steps:
       - uses: actions/checkout@v4
 
@@ -60,13 +36,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Build and push Docker image for ${{ matrix.service.name }}
+      - name: Build and push Docker image for ${{ matrix.service }}
         uses: docker/build-push-action@v6
         with:
-          context: ${{ matrix.service.context }}
-          file: ${{ matrix.service.context }}/${{ matrix.service.dockerfile }}
-          push: true
-          tags: ${{ env.DOCKERHUB_USERNAME }}/${{ matrix.service.image_suffix }}
+          context: .
+          file: ./src/${{ matrix.service }}/Dockerfile
+          tags: 'ciroa/tech-challenge-group43:${{ matrix.service }}-latest'
+          push: true.
+
 
   build_postgres:
     runs-on: ubuntu-latest
