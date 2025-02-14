@@ -92,6 +92,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./Configs
-          file: Dockerfile.postgres
+          file: ./Configs/Dockerfile.postgres
           push: true
           tags: ${{ env.DOCKERHUB_USERNAME }}/tech-challenge-postgres:latest
