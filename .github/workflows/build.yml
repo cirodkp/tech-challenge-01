@@ -41,8 +41,8 @@ jobs:
         with:
           context: .
           file: ./src/${{ matrix.service }}/Dockerfile
-          tags: 'ciroa/tech-challenge-group43:${{ matrix.service }}-latest'
-          push: true.
+          tags:  ${{ env.DOCKERHUB_USERNAME }}/tech-challenge-group43:${{ matrix.service }}-latest
+          push: true
 
 
   build_postgres:
