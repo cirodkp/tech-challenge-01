@@ -66,7 +66,7 @@ jobs:
       - name: Build & Push Docker Images
         uses: docker/build-push-action@v6.7.0
         with:
-          context: ${{ matrix.service == 'postgres' && './Configs' || format('./src/{0}', matrix.service) }}
-          file: ${{ matrix.service == 'postgres' && './Configs/Dockerfile.postgres' || format('./src/{0}/Dockerfile', matrix.service) }}
+          context: ${{ matrix.service == 'postgres' && './Configs' || . }}
+          file: ${{ matrix.service == 'postgres' && './Configs/Dockerfile.postgres' || ./src/${{ matrix.service }}/Dockerfile }}
           tags: ${{ env.DOCKERHUB_USERNAME }}/tech-challenge-group43:${{ matrix.service }}-latest
           push: true
