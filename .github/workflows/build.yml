@@ -47,6 +47,8 @@ jobs:
         run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY        
   deploy:
     runs-on: ubuntu-latest
+    env:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
     needs: build
     strategy:
       matrix:
