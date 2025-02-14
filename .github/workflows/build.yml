@@ -63,10 +63,21 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
           
+      - name: Definir variáveis de contexto e Dockerfile
+        run: |
+          if [[ "${{ matrix.service }}" == "postgres" ]]; then
+            echo "CONTEXT=./Configs" >> $GITHUB_ENV
+            echo "DOCKERFILE=./Configs/Dockerfile.postgres" >> $GITHUB_ENV
+          else
+            echo "CONTEXT=." >> $GITHUB_ENV
+            echo "DOCKERFILE=./src/${{ matrix.service }}/Dockerfile" >> $GITHUB_ENV
+          fi
+          
       - name: Build & Push Docker Images
         uses: docker/build-push-action@v6.7.0
         with:
-          context: ${{ matrix.service == 'postgres' && './Configs' || . }}
-          file: ${{ matrix.service == 'postgres' && './Configs/Dockerfile.postgres' || ./src/${{ matrix.service }}/Dockerfile }}
+          context: ${{ env.CONTEXT }}
+          file: ${{ env.DOCKERFILE }}
           tags: ${{ env.DOCKERHUB_USERNAME }}/tech-challenge-group43:${{ matrix.service }}-latest
           push: true
+
