@@ -99,7 +99,9 @@ services:
       - "8082:8080"
 
   db:
-    image: postgres
+    build:
+      context: .
+      dockerfile: ./Configs/Dockerfile.postgres
     container_name: postgres
     restart: always
     environment:
@@ -108,8 +110,6 @@ services:
       POSTGRES_PASSWORD: admin
     ports:
       - "5433:5432"
-    volumes:
-      - ./Configs/script.sql:/docker-entrypoint-initdb.d/script.sql
 
   rabbitmq:
     image: rabbitmq:management
