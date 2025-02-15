@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-consumer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: rabbitmq-consumer
+  template:
+    metadata:
+      labels:
+        app: rabbitmq-consumer
+    spec:
+      containers:
+        - name: rabbitmq-consumer
+          image: ciroa/tech-challenge-group43:TechChallenge01.Infra.Consumer-latest
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+            requests:
+              memory: 256Mi
+              cpu: "0.2"
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Docker"
+            - name: RABBITMQ_HOST
+              value: "rabbitmq"
+            - name: RABBITMQ_PORT
+              value: "5672"
+            - name: RABBITMQ_USER
+              value: "guest"
+            - name: RABBITMQ_PASSWORD
+              value: "guest"
+          ports:
+            - containerPort: 8080
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq-consumer-service
+  namespace: tech-challenge
+spec:
+  selector:
+    app: rabbitmq-consumer
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8080
