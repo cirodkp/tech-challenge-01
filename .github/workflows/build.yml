@@ -53,7 +53,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        service: [TechChallenge01.Api, TechChallenge01.TokenApi, TechChallenge01.ApiGateway, TechChallenge01.Infra.Consumer, Techchallenge01.ApiMessaging, postgres]
+        service: [TechChallenge01.Api, TechChallenge01.TokenApi, TechChallenge01.ApiGateway, TechChallenge01.Infra.Consumer, Techchallenge01.ApiMessaging, postgres,TechChallenge01.WebStatus]
     steps:
       - uses: actions/checkout@v4
       
