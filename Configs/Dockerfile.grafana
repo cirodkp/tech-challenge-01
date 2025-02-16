@@ -1,0 +1,8 @@
+FROM grafana/grafana
+
+ENV GF_SECURITY_ADMIN_PASSWORD=admin@123
+
+COPY grafana /var/lib/grafana
+COPY grafana/provisioning/dashboards /etc/grafana/provisioning/dashboards
+COPY grafana/provisioning/datasources /etc/grafana/provisioning/datasources
+COPY grafana/dashboards /var/lib/grafana/dashboards
