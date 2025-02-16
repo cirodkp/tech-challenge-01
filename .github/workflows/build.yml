@@ -53,7 +53,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        service: [TechChallenge01.Api, TechChallenge01.TokenApi, TechChallenge01.ApiGateway, TechChallenge01.Infra.Consumer, Techchallenge01.ApiMessaging, postgres]
+        service: [TechChallenge01.Api, TechChallenge01.TokenApi, TechChallenge01.ApiGateway, TechChallenge01.Infra.Consumer, Techchallenge01.ApiMessaging, postgres,TechChallenge01.WebStatus, grafana, prometheus]
     steps:
       - uses: actions/checkout@v4
       
@@ -68,6 +68,12 @@ jobs:
           if [[ "${{ matrix.service }}" == "postgres" ]]; then
             echo "CONTEXT=./Configs" >> $GITHUB_ENV
             echo "DOCKERFILE=./Configs/Dockerfile.postgres" >> $GITHUB_ENV
+          elif [[ "${{ matrix.service }}" == "grafana" ]]; then
+            echo "CONTEXT=." >> $GITHUB_ENV
+            echo "DOCKERFILE=./Dockerfile.grafana" >> $GITHUB_ENV
+          elif [[ "${{ matrix.service }}" == "prometheus" ]]; then
+            echo "CONTEXT=." >> $GITHUB_ENV
+            echo "DOCKERFILE=./Dockerfile.prometheus" >> $GITHUB_ENV
           else
             echo "CONTEXT=." >> $GITHUB_ENV
             echo "DOCKERFILE=./src/${{ matrix.service }}/Dockerfile" >> $GITHUB_ENV

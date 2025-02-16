@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: infra-consumer-config
+data:
+  CONSUMER_SERVICE_URL: "http://tech-challenge-infra-service:8080"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tech-challenge-infra-consumer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tech-challenge-infra-consumer
+  template:
+    metadata:
+      labels:
+        app: tech-challenge-infra-consumer
+    spec:
+      containers:
+        - name: infra-consumer-container
+          image: ciroa/tech-challenge-group43:TechChallenge01.Infra.Consumer-latest
+          ports:
+            - containerPort: 8083
+          envFrom:
+            - configMapRef:
+                name: infra-consumer-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tech-challenge-infra-consumer-service
+spec:
+  selector:
+    app: tech-challenge-infra-consumer
+  ports:
+    - protocol: TCP
+      port: 8083
+      targetPort: 8083
+  type: NodePort
