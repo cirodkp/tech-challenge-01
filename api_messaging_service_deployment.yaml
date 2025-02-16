@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-messaging-config
+data:
+  MESSAGE_QUEUE_URL: "http://tech-challenge-message-queue:5672"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-messaging-service-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tech-challenge-api-messaging
+  template:
+    metadata:
+      labels:
+        app: tech-challenge-api-messaging
+    spec:
+      containers:
+        - name: api-messaging-container
+          image: ciroa/tech-challenge-group43:TechChallenge01.ApiMessaging-latest
+          ports:
+            - containerPort: 8082
+          envFrom:
+            - configMapRef:
+                name: api-messaging-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tech-challenge-api-messaging-service
+spec:
+  selector:
+    app: tech-challenge-api-messaging
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8082
+  type: NodePort
