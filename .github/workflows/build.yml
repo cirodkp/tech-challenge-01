@@ -70,10 +70,10 @@ jobs:
             echo "DOCKERFILE=./Configs/Dockerfile.postgres" >> $GITHUB_ENV
           elif [[ "${{ matrix.service }}" == "grafana" ]]; then
             echo "CONTEXT=." >> $GITHUB_ENV
-            echo "DOCKERFILE=./Dockerfile.grafana" >> $GITHUB_ENV
+            echo "DOCKERFILE=./Configs/Dockerfile.grafana" >> $GITHUB_ENV
           elif [[ "${{ matrix.service }}" == "prometheus" ]]; then
             echo "CONTEXT=." >> $GITHUB_ENV
-            echo "DOCKERFILE=./Dockerfile.prometheus" >> $GITHUB_ENV
+            echo "DOCKERFILE=./Configs/Dockerfile.prometheus" >> $GITHUB_ENV
           else
             echo "CONTEXT=." >> $GITHUB_ENV
             echo "DOCKERFILE=./src/${{ matrix.service }}/Dockerfile" >> $GITHUB_ENV
