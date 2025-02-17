@@ -1,16 +1,18 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: api-messaging-config
+  name: tech-challenge-api-messaging
 data:
-  MESSAGE_QUEUE_URL: "http://tech-challenge-message-queue:5672"
+  DATABASE_URL: "Server=db;Port=5432;Database=tech_challenge;User Id=admin;Password=admin;"
+  API_KEY: "api-key"
+
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api-messaging-service-deployment
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: tech-challenge-api-messaging
@@ -20,14 +22,18 @@ spec:
         app: tech-challenge-api-messaging
     spec:
       containers:
-        - name: api-messaging-container
-          image: ciroa/tech-challenge-group43:TechChallenge01.ApiMessaging-latest
+        - name: apiqueue
+          image: ciroa/tech-challenge-group43:Techchallenge01.ApiMessaging-latest
           ports:
-            - containerPort: 8082
+            - containerPort: 8080
+          env:
+            - name: ConnectionStrings__postgres
+              value: "Server=tech-challenge-postgres-service;Port=5432;Database=tech_challenge;User Id=admin;Password=admin;"
           envFrom:
             - configMapRef:
-                name: api-messaging-config
----
+                name: tech-challenge-api-messaging
+
+---s
 apiVersion: v1
 kind: Service
 metadata:
@@ -37,6 +43,6 @@ spec:
     app: tech-challenge-api-messaging
   ports:
     - protocol: TCP
-      port: 8082
-      targetPort: 8082
+      port: 8080
+      targetPort: 8080
   type: NodePort

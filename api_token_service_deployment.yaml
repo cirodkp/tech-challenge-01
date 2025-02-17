@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: token-api-config
+  name: api-token-config
 data:
   DATABASE_URL: "mongodb://tech-challenge-db:27017"
   API_KEY: "api-key"
@@ -9,35 +9,35 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tech-challenge-token-api
+  name: api-token-config
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: tech-challenge-token-api
+      app: api-token-config
   template:
     metadata:
       labels:
-        app: tech-challenge-token-api
+        app: api-token-config
     spec:
       containers:
-        - name: token-api-container
+        - name: tokenapi
           image: ciroa/tech-challenge-group43:TechChallenge01.TokenApi-latest
           ports:
-            - containerPort: 8084
+            - containerPort: 8080
           envFrom:
             - configMapRef:
-                name: token-api-config
+                name: api-token-config
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: tech-challenge-token-api-service
+  name: api-token-config-service
 spec:
   selector:
-    app: tech-challenge-token-api
+    app: api-token-config
   ports:
     - protocol: TCP
-      port: 8084
-      targetPort: 8084
+      port: 8080
+      targetPort: 8080
   type: NodePort
