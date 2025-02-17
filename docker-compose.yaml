@@ -127,7 +127,7 @@ services:
       rabbitmq-plugins enable --offline rabbitmq_prometheus &&
       rabbitmq-server"
 
- prometheus:
+  prometheus:
     build: 
       context: .
       dockerfile: Dockerfile.prometheus
