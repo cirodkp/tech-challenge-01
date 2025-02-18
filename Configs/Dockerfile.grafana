@@ -5,18 +5,20 @@ FROM grafana/grafana:latest
 ENV GF_SECURITY_ADMIN_PASSWORD=admin@123
 
 # Cria as pastas necessárias dentro da imagem, caso ainda não existam
-RUN mkdir -p /etc/grafana/provisioning/dashboards /etc/grafana/provisioning/datasources /var/lib/grafana/dashboards
+RUN mkdir -p /etc/grafana/provisioning/dashboards \
+    /etc/grafana/provisioning/datasources \
+    /var/lib/grafana/dashboards \
+    /var/lib/grafana/plugins
 
-# Copia os arquivos de configuração e dashboards para os diretórios corretos
+# Copia os arquivos de configuração, dashboards e plugins para os diretórios corretos
 COPY grafana/provisioning/dashboards /etc/grafana/provisioning/dashboards
 COPY grafana/provisioning/datasources /etc/grafana/provisioning/datasources
 COPY grafana/dashboards /var/lib/grafana/dashboards
+COPY grafana/plugins /var/lib/grafana/plugins  # Adiciona a pasta de plugins
 
 # Altera o usuário para root e ajusta as permissões para garantir que o Grafana possa acessar os arquivos
 USER root
-RUN chmod -R 777 /var/lib/grafana /etc/grafana/provisioning
+RUN chmod -R 777 /var/lib/grafana /etc/grafana/provisioning /var/lib/grafana/plugins
 
 # Expõe a porta padrão do Grafana
 EXPOSE 3000
-
-
