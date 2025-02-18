@@ -1,5 +1,5 @@
 # Usa a imagem oficial do Grafana
-FROM grafana/grafana:latest
+FROM grafana/grafana
 
 # Define a senha do usuário admin
 ENV GF_SECURITY_ADMIN_PASSWORD=admin@123
