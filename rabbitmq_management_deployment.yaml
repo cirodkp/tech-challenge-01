@@ -30,14 +30,14 @@ spec:
           volumeMounts:
             - name: rabbitmq-data
               mountPath: /var/lib/rabbitmq
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 5672
-            initialDelaySeconds: 5
-            periodSeconds: 10
-            timeoutSeconds: 2
-            failureThreshold: 3
+          # readinessProbe:
+          #   httpGet:
+          #     path: /health
+          #     port: 5672
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 10
+          #   timeoutSeconds: 2
+          #   failureThreshold: 3
       volumes:
         - name: rabbitmq-data
           persistentVolumeClaim:
@@ -60,6 +60,10 @@ spec:
       port: 15672
       targetPort: 15672
       name: rabbitmq-mng
+    - protocol: TCP
+      port: 15692
+      targetPort: 15692
+      name: rabbitmq-metrics
   type: NodePort
 
 ---
