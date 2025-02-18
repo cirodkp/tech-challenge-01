@@ -1,8 +1,13 @@
-FROM grafana/grafana
+# Usa a imagem oficial do Grafana
+FROM grafana/grafana:latest
 
+# Define a senha do usuário admin
 ENV GF_SECURITY_ADMIN_PASSWORD=admin@123
 
-COPY grafana /var/lib/grafana
+# Copia os arquivos de configuração e dashboards para os diretórios corretos
 COPY grafana/provisioning/dashboards /etc/grafana/provisioning/dashboards
 COPY grafana/provisioning/datasources /etc/grafana/provisioning/datasources
 COPY grafana/dashboards /var/lib/grafana/dashboards
+
+# Ajusta permissões para garantir que o Grafana possa acessar os arquivos
+RUN chmod -R 777 /var/lib/grafana /etc/grafana/provisioning
