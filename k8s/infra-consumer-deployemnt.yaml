@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tech-challenge-infra-consumer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tech-challenge-infra-consumer
+  template:
+    metadata:
+      labels:
+        app: tech-challenge-infra-consumer
+    spec:
+      containers:
+        - name: infra-consumer-container
+          image: ciroa/tech-challenge-group43:TechChallenge01.Infra.Consumer-latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: CONSUMER_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: infra-consumer-config
+                  key: CONSUMER_SERVICE_URL
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: infra-consumer-config
+                  key: DATABASE_URL
+            - name: RABBITMQ_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: infra-consumer-config
+                  key: RABBITMQ_URL
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: tech-challenge-secrets
+                  key: DATABASE_PASSWORD
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: tech-challenge-secrets
+                  key: API_KEY
+            - name: RABBITMQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: tech-challenge-secrets
+                  key: RABBITMQ_PASSWORD

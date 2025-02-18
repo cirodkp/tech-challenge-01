@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-messaging-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tech-challenge-api-messaging
+  template:
+    metadata:
+      labels:
+        app: tech-challenge-api-messaging
+    spec:
+      containers:
+        - name: apiqueue
+          image: ciroa/tech-challenge-group43:Techchallenge01.ApiMessaging-latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ConnectionStrings__postgres
+              value: "Server=postgres-service;Port=5432;Database=tech_challenge;User Id=admin;Password=admin;"
+          envFrom:
+            - configMapRef:
+                name: tech-challenge-api-messaging

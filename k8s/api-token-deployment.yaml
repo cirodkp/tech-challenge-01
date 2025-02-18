@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-token-config
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-token-config
+  template:
+    metadata:
+      labels:
+        app: api-token-config
+    spec:
+      containers:
+        - name: tokenapi
+          image: ciroa/tech-challenge-group43:TechChallenge01.TokenApi-latest
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: api-token-config
+            - secretRef:
+                name: apitoken-secret

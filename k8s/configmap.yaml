@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: tech-challenge-config
-data:
-  ASPNETCORE_ENVIRONMENT: "Docker"
-  RABBITMQ_HOST: "rabbitmq"
-  RABBITMQ_PORT: "5672"
-  POSTGRES_DB: "tech_challenge"
