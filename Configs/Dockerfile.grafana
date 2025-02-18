@@ -14,7 +14,7 @@ RUN mkdir -p /etc/grafana/provisioning/dashboards \
 COPY grafana/provisioning/dashboards /etc/grafana/provisioning/dashboards
 COPY grafana/provisioning/datasources /etc/grafana/provisioning/datasources
 COPY grafana/dashboards /var/lib/grafana/dashboards
-COPY grafana/plugins /var/lib/grafana/plugins  # Adiciona a pasta de plugins
+COPY grafana/plugins /var/lib/grafana/plugins   
 
 # Altera o usuário para root e ajusta as permissões para garantir que o Grafana possa acessar os arquivos
 USER root
