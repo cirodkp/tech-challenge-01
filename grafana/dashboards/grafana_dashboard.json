@@ -24,212 +24,10 @@
   "description": "ASP.NET Core metrics from OpenTelemetry",
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "gnetId": 19924,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 1,
   "links": [],
-  "liveNow": false,
   "panels": [
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "Prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 0
-      },
-      "id": 62,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "Prometheus"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "dotnet_total_memory_bytes",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "Memory Usage",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "Prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 0
-      },
-      "id": 61,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "Prometheus"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "expr": "system_runtime_cpu_usage",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "CPU Usage",
-      "type": "timeseries"
-    },
     {
       "datasource": {
         "type": "prometheus",
@@ -330,7 +128,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 8
+        "y": 0
       },
       "id": 40,
       "options": {
@@ -345,10 +143,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -557,7 +357,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 8
+        "y": 0
       },
       "id": 47,
       "options": {
@@ -572,10 +372,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -681,7 +483,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 17
+        "y": 9
       },
       "id": 49,
       "options": {
@@ -692,10 +494,12 @@
           "showLegend": false
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -777,7 +581,7 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 17
+        "y": 9
       },
       "id": 55,
       "options": {
@@ -788,10 +592,12 @@
           "showLegend": false
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -841,7 +647,7 @@
         "h": 4,
         "w": 6,
         "x": 12,
-        "y": 17
+        "y": 9
       },
       "id": 58,
       "options": {
@@ -862,7 +668,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "11.2.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -914,7 +720,7 @@
         "h": 4,
         "w": 6,
         "x": 18,
-        "y": 17
+        "y": 9
       },
       "id": 59,
       "options": {
@@ -935,7 +741,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "11.2.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -971,7 +777,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -986,7 +793,7 @@
         "h": 4,
         "w": 6,
         "x": 12,
-        "y": 21
+        "y": 13
       },
       "id": 60,
       "options": {
@@ -1006,7 +813,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "11.2.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1040,7 +847,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1055,7 +863,7 @@
         "h": 4,
         "w": 6,
         "x": 18,
-        "y": 21
+        "y": 13
       },
       "id": 42,
       "options": {
@@ -1075,7 +883,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "11.2.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1115,7 +923,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1198,9 +1007,8 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 25
+        "y": 17
       },
-      "hideTimeOverride": false,
       "id": 51,
       "options": {
         "cellHeight": "sm",
@@ -1220,7 +1028,7 @@
           }
         ]
       },
-      "pluginVersion": "11.2.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1289,7 +1097,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1371,9 +1180,8 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 25
+        "y": 17
       },
-      "hideTimeOverride": false,
       "id": 54,
       "options": {
         "cellHeight": "sm",
@@ -1393,7 +1201,7 @@
           }
         ]
       },
-      "pluginVersion": "11.2.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1439,9 +1247,9 @@
       "type": "table"
     }
   ],
+  "preload": false,
   "refresh": "",
-  "revision": 1,
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [
     "dotnet",
     "prometheus",
@@ -1451,19 +1259,16 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "api01-read-prometheus",
-          "value": "api01-read-prometheus"
+          "text": "tokenapi-read-prometheus",
+          "value": "tokenapi-read-prometheus"
         },
         "datasource": {
           "type": "prometheus",
           "uid": "Prometheus"
         },
         "definition": "label_values(http_server_active_requests,job)",
-        "hide": 0,
         "includeAll": false,
         "label": "Job",
-        "multi": false,
         "name": "job",
         "options": [],
         "query": {
@@ -1472,25 +1277,21 @@
         },
         "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
       },
       {
         "current": {
-          "selected": false,
-          "text": "api01:8080",
-          "value": "api01:8080"
+          "text": "api-token-config-service:8080",
+          "value": "api-token-config-service:8080"
         },
         "datasource": {
           "type": "prometheus",
           "uid": "Prometheus"
         },
         "definition": "label_values(http_server_active_requests{job=~\"$job\"},instance)",
-        "hide": 0,
         "includeAll": false,
         "label": "Instance",
-        "multi": false,
         "name": "instance",
         "options": [],
         "query": {
@@ -1499,31 +1300,16 @@
         },
         "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-5m",
     "to": "now"
   },
-  "timepicker": {
-    "refresh_intervals": [
-      "1s",
-      "5s",
-      "10s",
-      "30s",
-      "1m",
-      "5m",
-      "15m",
-      "30m",
-      "1h",
-      "2h",
-      "1d"
-    ]
-  },
+  "timepicker": {},
   "timezone": "",
   "title": "ASP.NET Core",
   "uid": "KdDACDp4z",
