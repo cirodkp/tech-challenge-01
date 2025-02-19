@@ -12,7 +12,7 @@ Este é um projeto .NET que utiliza Docker para facilitar o ambiente de desenvol
 1. Clone este repositório:
 
  ```bash
-   git clone https://github.com/liciomachado/tech-challenge-01.git
+   git clone [https://github.com/cirodkp/tech-challenge-01.git]
    cd tech-challenge-01
   ```
 
