@@ -19,7 +19,10 @@ spec:
             - containerPort: 8080
           env:
             - name: ConnectionStrings__postgres
-              value: "Server=postgres-service;Port=5432;Database=tech_challenge;User Id=admin;Password=admin;"
+              value: "Server=postgres-service;Port=5432;Database=tech_challenge;User Id=admin;Password=$(POSTGRES_PASSWORD);"
           envFrom:
             - configMapRef:
-                name: tech-challenge-api-messaging
+                name: tech-challenge-api-messaging-config
+            - secretRef:
+                name: postgres-secret
+

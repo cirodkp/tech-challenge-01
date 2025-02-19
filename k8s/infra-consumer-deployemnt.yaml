@@ -18,33 +18,10 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: CONSUMER_SERVICE_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: infra-consumer-config
-                  key: CONSUMER_SERVICE_URL
-            - name: DATABASE_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: infra-consumer-config
-                  key: DATABASE_URL
-            - name: RABBITMQ_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: infra-consumer-config
-                  key: RABBITMQ_URL
-            - name: DATABASE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: tech-challenge-secrets
-                  key: DATABASE_PASSWORD
-            - name: API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: tech-challenge-secrets
-                  key: API_KEY
-            - name: RABBITMQ_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: tech-challenge-secrets
-                  key: RABBITMQ_PASSWORD
+            - name: ConnectionStrings__postgres
+              value: "Server=postgres-service;Port=5432;Database=tech_challenge;User Id=admin;Password=$(POSTGRES_PASSWORD);"
+          envFrom:
+            - configMapRef:
+                name: infra-consumer-config
+            - secretRef:
+                name: postgres-secret

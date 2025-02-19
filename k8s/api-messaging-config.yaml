@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: tech-challenge-api-messaging
+  name: tech-challenge-api-messaging-config
 data:
-  DATABASE_URL: "Server=db;Port=5432;Database=tech_challenge;User Id=admin;Password=;"
+  DATABASE_URL: "Server=postgres-service;Port=5432;Database=tech_challenge;User Id=admin;Password=;"
   API_KEY: "api-key"

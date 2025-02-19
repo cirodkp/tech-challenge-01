@@ -4,5 +4,5 @@ metadata:
   name: infra-consumer-config
 data:
   CONSUMER_SERVICE_URL: "http://tech-challenge-infra-service:8080"
-  DATABASE_URL: "Server=db;Port=5432;Database=tech_challenge;User Id=admin;Password="
+  DATABASE_URL: "Server=postgres-service;Port=5432;Database=tech_challenge;User Id=admin;Password="
   RABBITMQ_URL: "amqp://guest:guest@rabbitmq:5672"
