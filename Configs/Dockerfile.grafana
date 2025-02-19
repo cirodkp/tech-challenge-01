@@ -13,7 +13,7 @@ RUN mkdir -p /etc/grafana/provisioning/dashboards \
 # Copia os arquivos de configuração, dashboards e plugins para os diretórios corretos
 COPY grafana/provisioning/dashboards /etc/grafana/provisioning/dashboards
 COPY grafana/provisioning/datasources /etc/grafana/provisioning/datasources
-COPY grafana/dashboards /var/lib/grafana/dashboards
+COPY grafana/dashboards /var/lib/grafana/dashboards  # Aqui está o ajuste para incluir a pasta dashboards
 COPY grafana/plugins /var/lib/grafana/plugins   
 
 # Altera o usuário para root e ajusta as permissões para garantir que o Grafana possa acessar os arquivos
